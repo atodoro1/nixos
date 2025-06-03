@@ -52,6 +52,20 @@
     minikube
     kubectl
     awscli2
+    home-manager
+    neofetch
+    zip
+    unzip
+    dnsutils
+    ltrace
+    lsof
+    zoom-us
+    gcc
+    man-pages
+    man-pages-posix
+    kitty
+    oniux
+    signal-desktop
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -74,15 +88,10 @@
   # shell provided by Home Manager. If you don't want to manage your shell
   # through Home Manager then you have to manually source 'hm-session-vars.sh'
   # located at either
-  #
   #  ~/.nix-profile/etc/profile.d/hm-session-vars.sh
-  #
   # or
-  #
   #  ~/.local/state/nix/profiles/profile/etc/profile.d/hm-session-vars.sh
-  #
   # or
-  #
   #  /etc/profiles/per-user/atodoro1/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
@@ -93,6 +102,43 @@
     enable = true;
     userName = "Angel Todorov";
     userEmail = "2angel.todorov@gmail.com";
+  };
+
+  programs.zsh = {
+    enable = true;
+    enableCompletion = true;
+    autosuggestion.enable = true;
+    syntaxHighlighting.enable = true;
+    shellAliases = {
+      l = "ls -alh";
+      ll = "ls -l";
+      ls = "ls --color=tty";
+      vi-home = "sudo vi /etc/nixos/hosts/hp/home.nix";
+      vi-conf = "sudo vi /etc/nixos/hosts/hp/configuration.nix";
+      update = "sudo nixos-rebuild switch --flake \"/etc/nixos#nixos\"";
+      k = "kubectl";
+    };
+    history = {
+      size = 10000;
+      path = "/home/atodoro1/.zsh_history";
+    };
+    initContent = ''
+      bindkey '^[[1;5D' backward-word
+      bindkey '^[[1;5C' forward-word
+      bindkey '^H' backward-kill-word
+      bindkey '^[[3;5~' kill-word
+    '';
+  };
+
+  programs.starship = {
+    enable = true;
+    settings = {
+      add_newline = false;
+      character = {
+        success_symbol = "[∴](bold green)";
+        error_symbol = "[∴](bold red)";
+      };
+    };
   };
 
   # Let Home Manager install and manage itself.

@@ -26,7 +26,7 @@
         CPU_MAX_PERF_ON_AC = 100;
 
         # START_CHARGE_THRESH_BAT0 = 40; # 40 and below it starts to charge
-        STOP_CHARGE_THRESH_BAT0 = 97; # 80 and above it stops charging
+        STOP_CHARGE_THRESH_BAT0 = 80; # 80 and above it stops charging
       };
     };
   };

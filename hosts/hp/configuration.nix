@@ -19,6 +19,7 @@ in
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   networking.hostName = "nixos"; # Define your hostname.
+  networking.nameservers = ["9.9.9.10" "149.112.112.10"];
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -66,6 +67,7 @@ in
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
+    jack.enable = true;
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
@@ -74,6 +76,7 @@ in
 
   # Install firefox.
   programs.firefox.enable = true;
+  programs.zsh.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -81,7 +84,7 @@ in
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    vim
     wget
     curl
     tmux
@@ -90,11 +93,15 @@ in
     tree
   ];
 
+  services.tor = {
+    enable = true;
+  };
+
   users.users.atodoro1 = {
       isNormalUser = true;
       description = "Angel Todorov";
       extraGroups = [ "networkmanager" "wheel" ];
-      shell = pkgs.bash;
+      shell = pkgs.zsh;
   };
 
   home-manager = {
@@ -132,6 +139,10 @@ in
   };
 
   programs.virt-manager.enable = true;
+
+  services.printing = {
+    drivers = [ pkgs.hplip ];
+  };
 
 
   system.stateVersion = "25.05"; # Did you read the comment?
