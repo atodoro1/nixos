@@ -41,7 +41,6 @@
     file
     obsidian
     jq
-    tor-browser
     vscode
     nmap
     wireshark
@@ -66,6 +65,16 @@
     kitty
     oniux
     signal-desktop
+    citrix_workspace
+    sticky-notes
+    python3
+    pulseaudio
+    tor-browser
+    v4l-utils
+    ffmpeg
+    arp-scan
+    youtube-music
+    caligula
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -110,7 +119,7 @@
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
     shellAliases = {
-      l = "ls -alh";
+      l = "ls -aF";
       ll = "ls -l";
       ls = "ls --color=tty";
       vi-home = "sudo vi /etc/nixos/hosts/hp/home.nix";
@@ -140,6 +149,26 @@
       };
     };
   };
+
+programs.vim = {
+  enable = true;
+  defaultEditor = true;
+  extraConfig = ''
+    syntax on
+    set number
+    set nocompatible
+    filetype plugin indent on
+    set tabstop=4
+    set shiftwidth=4
+    set smarttab
+    autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+    autocmd FileType nix setlocal ts=2 sts=2 sw=2 expandtab
+    set colorcolumn=80
+    set textwidth=80
+    command! Col   set colorcolumn=80
+    command! Nocol set colorcolumn=
+  '';
+};
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

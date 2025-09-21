@@ -88,9 +88,10 @@ in
     wget
     curl
     tmux
-    lf
+    yazi
     sl
     tree
+    dpkg
   ];
 
   services.tor = {
@@ -100,7 +101,7 @@ in
   users.users.atodoro1 = {
       isNormalUser = true;
       description = "Angel Todorov";
-      extraGroups = [ "networkmanager" "wheel" ];
+      extraGroups = [ "networkmanager" "wheel" "docker" "libvirtd" "audio" ];
       shell = pkgs.zsh;
   };
 
@@ -143,7 +144,6 @@ in
   services.printing = {
     drivers = [ pkgs.hplip ];
   };
-
 
   system.stateVersion = "25.05"; # Did you read the comment?
 }
