@@ -1,4 +1,4 @@
-# My Old NixOS Config
+# My NixOS Config
 
 Personal NixOS setup managed as a Nix flake, with system config.
 
