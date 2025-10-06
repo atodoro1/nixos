@@ -1,6 +1,6 @@
 # My NixOS Config
 
-Personal NixOS setup managed as a Nix flake, with system config.
+Personal NixOS setup managed as a Nix flake with Home Manager.
 
 ## Structure
 
