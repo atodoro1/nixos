@@ -1,4 +1,4 @@
-# My NixOS Config
+# My NixOS Config (deprecated)
 
 Personal NixOS setup managed as a Nix flake with Home Manager.
 
